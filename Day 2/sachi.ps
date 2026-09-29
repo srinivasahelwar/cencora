@@ -1,0 +1,22 @@
+$rg = "rg-day02-sachi"
+$location = "centralindia"
+$vnetName = "vnet-sachi11"
+
+$subnetWeb = New-AzVirtualNetworkSubnetConfig `
+    -Name "subnet-web" `
+    -AddressPrefix "10.79.1.0/24"
+
+$subnetApp = New-AzVirtualNetworkSubnetConfig `
+    -Name "subnet-app" `
+    -AddressPrefix "10.79.2.0/24"
+
+$subnetVm = New-AzVirtualNetworkSubnetConfig `
+    -Name "subnet-vm" `
+    -AddressPrefix "10.79.3.0/24"
+
+New-AzVirtualNetwork `
+    -Name $vnetName `
+    -ResourceGroupName $rg `
+    -Location $location `
+    -AddressPrefix "10.79.0.0/16" `
+    -Subnet $subnetWeb,$subnetApp,$subnetVm
